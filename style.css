@@ -38,8 +38,23 @@ body {
     border-radius: 10px;
     border: 1px solid;
 }
-.todo-list{
+.task-item__buttons{
+    background-color: rgb(140, 127, 255);
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+.btn-add{
+    font-size: 15px;
+    color: #2603c2;
+    font-weight: bold;
 
+
+}
+.btn-close{
+    font-size: 15px;
+    color: #e90505;
+    font-weight: bold;
 }
 .addTaskList{
     background-color: #b4ff89;
@@ -61,6 +76,7 @@ body {
     font-size: 20px;
     margin:30px 10px;
     padding: 0 10px;
+    border-radius: 10px;
 
 }
 .btn{
