@@ -3,10 +3,11 @@ let inPut = document.querySelector('#input') //Получаем кнопку
 let taskList = document.querySelector('#taskList') //Получаем ul
 let emptylist = document.querySelector('#emptyList') //Получаем li
 let sum = document.querySelector('.count')
+let closeTask = document.querySelector('.close-Task')
 
 form.addEventListener('submit', addTask) //При нажимании кнопки,вызываем функцию
 taskList.addEventListener('click', deleteTask)
-// taskList.addEventListener('click', downTask)
+taskList.addEventListener('click', doneTask)
 
 let count = 0
 function addTask(event){
@@ -35,16 +36,41 @@ function addTask(event){
         if(taskList.children.length > 1){
             emptylist.classList.add('none')
         }
-        sum.innerHTML=  ++count
+        sum.innerHTML =  ++count
     }
 
 }    
 function deleteTask(event){
-    if(event.target.dataset.action !== 'delete')remove
-    let delTask = event.target.closest('.group-list')
-    delTask.remove()
-    if(taskList.children.length == 1){
-        emptylist.classList.remove('none')
+    if(event.target.dataset.action !== 'delete'){
+        return
+    }else {
+        let delTask = event.target.closest('.group-list')
+        delTask.remove()
+        if(taskList.children.length == 1){
+            emptylist.classList.remove('none')
+        }
+        sum.innerHTML =  --count
+        closeTask.innerHTML = --toCloseTask 
+        if(toCloseTask <= 0){
+            closeTask.innerHTML = 'Нет отмеченных задач' 
+        }
     }
-    sum.innerHTML=  --count
 }
+
+
+let toCloseTask = 0
+
+function doneTask(event){
+    if(event.target.dataset.action !== 'done')return
+
+    const parenNode = event.target.closest('.group-list')
+    const taskTitle = parenNode.querySelector('.task-title')
+    taskTitle.classList.toggle('task-title--done')
+    closeTask.innerHTML = ++toCloseTask
+}
+
+
+
+// function saveLocal(){
+//     localStorage.setItem('taskHtml', taskList.innerHTML)
+// }
