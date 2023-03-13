@@ -9,9 +9,9 @@ form.addEventListener('submit', addTask)
 taskList.addEventListener('click', deleteTask)
 taskList.addEventListener('click', doneTask)
 
-if(localStorage.getItem('taskList')){
-    taskList.innerHTML = localStorage.getItem('taskList')
-}
+// if(localStorage.getItem('taskList')){
+//     taskList.innerHTML = localStorage.getItem('taskList')
+// }
 
 let count = 0
 let toCloseTask = 0
@@ -46,7 +46,7 @@ function addTask(event){
         sum.innerHTML =  ++count
         
     }
-    todoLocal()
+    // todoLocal()
 }    
 function deleteTask(event){
     if(event.target.dataset.action !== 'delete'){
@@ -63,7 +63,7 @@ function deleteTask(event){
             closeTask.innerHTML = 'Нет отмеченных задач' 
         }
     }
-    todoLocal()
+    // todoLocal()
 }
 function doneTask(event){
     if(event.target.dataset.action !== 'done')return
@@ -71,10 +71,10 @@ function doneTask(event){
     const taskTitle = parenNode.querySelector('.task-title')
     taskTitle.classList.toggle('task-title--done')
     closeTask.innerHTML = ++toCloseTask
-    todoLocal()
+    // todoLocal()
 }
-function todoLocal(){
-    localStorage.setItem('taskList', taskList.innerHTML)
-}
+// function todoLocal(){
+//     localStorage.setItem('taskList', taskList.innerHTML)
+// }
 
 
