@@ -5,17 +5,20 @@ let emptylist = document.querySelector('#emptyList') //Получаем li
 let sum = document.querySelector('.count')
 let closeTask = document.querySelector('.close-Task')
 
-form.addEventListener('submit', addTask) //При нажимании кнопки,вызываем функцию
+
+form.addEventListener('submit', addTask) 
 taskList.addEventListener('click', deleteTask)
 taskList.addEventListener('click', doneTask)
 
 let count = 0
+let toCloseTask = 0
+
 function addTask(event){
     if(inPut.value == ''){
         alert('Поле ввода пустое')
     }else{
         event.preventDefault() //Отменяем отправку формы
-        let taskText = inPut.value //достаем значение из инпута
+        let taskText = inPut.value
         // Формируем разметку
         let taskHtml = `
         <li class="group-list"> 
@@ -31,14 +34,14 @@ function addTask(event){
         </li>`
        //вставляем полученный li в конец ul
         taskList.insertAdjacentHTML('beforeend', taskHtml)
-        inPut.value = '' //очищаем инпут
+        inPut.value = '' 
         //делаем проверку,если длина li больше 1,то скрываем emptyList 
         if(taskList.children.length > 1){
             emptylist.classList.add('none')
         }
         sum.innerHTML =  ++count
     }
-
+   
 }    
 function deleteTask(event){
     if(event.target.dataset.action !== 'delete'){
@@ -55,11 +58,8 @@ function deleteTask(event){
             closeTask.innerHTML = 'Нет отмеченных задач' 
         }
     }
+ 
 }
-
-
-let toCloseTask = 0
-
 function doneTask(event){
     if(event.target.dataset.action !== 'done')return
 
@@ -67,10 +67,8 @@ function doneTask(event){
     const taskTitle = parenNode.querySelector('.task-title')
     taskTitle.classList.toggle('task-title--done')
     closeTask.innerHTML = ++toCloseTask
+ 
 }
 
 
 
-// function saveLocal(){
-//     localStorage.setItem('taskHtml', taskList.innerHTML)
-// }
